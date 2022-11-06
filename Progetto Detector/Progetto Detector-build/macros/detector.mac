@@ -1,0 +1,11 @@
+/run/initialize
+
+/gps/particle gamma
+/gps/ene/mono 662 keV
+/gps/pos/centre -5 0 0 cm
+/gps/direction 1 0 0
+/tracking/verbose 0
+
+
+/run/beamOn 1000000
+

@@ -1,0 +1,7 @@
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/task.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/edit_cache.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/rebuild_cache.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/list_install_components.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/install.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/install/local.dir
+/Users/admin/geant4-v11.0.1/tasks-build/task4-build/CMakeFiles/install/strip.dir

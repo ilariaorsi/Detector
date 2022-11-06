@@ -19,6 +19,7 @@ public:
 private:
  
     void ConstructDemo(G4LogicalVolume* worldLog);
+    void ConstructSDandField() override;
 };
 
 #endif

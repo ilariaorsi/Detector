@@ -68,6 +68,10 @@ void DetectorConstruction::ConstructDemo(G4LogicalVolume* worldLog)
         "     #     #   #    #####   #     #      #       ###       ####    #####      #    ## # #   ",
         "                                                                                            "
     };
+ }
+ 
+void DetectorConstruction::ConstructSDandField()
+{
  
     G4SDManager* sdManager = G4SDManager::GetSDMpointer();
     sdManager->SetVerboseLevel(2);

@@ -37,7 +37,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4VPhysicalVolume* worldPhys = new G4PVPlacement(nullptr, {}, worldLog, "world", nullptr, false, 0);
 
     //CREATION OF THE DETECTOR
-    G4double thickness = 10 * cm;
+    G4double thickness = 8 * cm;
     G4double width = 5 * cm;
     G4double height = 5 * cm;
 

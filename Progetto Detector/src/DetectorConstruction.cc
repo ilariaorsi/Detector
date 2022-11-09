@@ -1,5 +1,4 @@
 #include "DetectorConstruction.hh"
-
 #include <G4LogicalVolume.hh>
 #include <G4PVPlacement.hh>
 #include <G4NistManager.hh>
@@ -10,7 +9,6 @@
 #include <G4SDManager.hh>
 #include <G4MultiFunctionalDetector.hh>
 #include <G4PSEnergyDeposit.hh>
-
 #include <sstream>
 
 using namespace std;
@@ -22,7 +20,6 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     G4double worldSizeX = 5 * m;
     G4double worldSizeY = 5 * m;
     G4double worldSizeZ = 5 * m;
-
 
     // 1) Solid
     G4VSolid* worldBox = new G4Box("world", worldSizeX / 2, worldSizeY / 2, worldSizeZ / 2);
@@ -43,12 +40,15 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
 
     G4Material *polystyrene=nist->FindOrBuildMaterial("G4_POLYSTYRENE");
     
+    // 1) Solid
     G4VSolid* absorberBox = new G4Box("absorber", thickness, width, height);
 
+    // 2) Logical volume
     G4LogicalVolume* absorberLog = new G4LogicalVolume(absorberBox, polystyrene, "absorber");
 
+    // 3) Physical volume
     G4ThreeVector absorberPosition = {0.,0.,0.};
-    new G4PVPlacement (0, absorberPosition, absorberLog, "absorber", worldLog, false, 0, 0);
+    G4VPhysicalVolume* absorberPhys = new G4PVPlacement (0, absorberPosition, absorberLog, "absorber", worldLog, false, 0, 0);
     
     
     // The Construct() method has to return the final (physical) world volume:

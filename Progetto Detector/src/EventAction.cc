@@ -1,5 +1,4 @@
 #include "EventAction.hh"
-
 #include <G4SDManager.hh>
 #include <G4THitsMap.hh>
 #include <G4SystemOfUnits.hh>
@@ -29,7 +28,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
 
     if (fAbsorberId >= 0)
     {
-
         G4THitsMap<G4double>* hitMapA = dynamic_cast<G4THitsMap<G4double>*>(hcofEvent->GetHC(fAbsorberId)) ;
         
       if (hitMapA)
@@ -41,6 +39,6 @@ void EventAction::EndOfEventAction(const G4Event* event)
           }
       }
     }
-    if (eTot>0) analysis->FillH1(histogramId, eTot / keV);
+    if (eTot>0) analysis->FillH1(histogramId, eTot / keV); //riempio istogramma solo se l'energia è maggiore di 0
     
 }

@@ -4,6 +4,8 @@
 #include <G4AccumulableManager.hh>
 #include <G4SystemOfUnits.hh>
 #include <Analysis.hh>
+#include <iostream>
+using namespace std;
 
 
 RunAction::RunAction() :
@@ -29,10 +31,13 @@ RunAction::RunAction() :
 
 
     analysisManager->CreateH1("eDep" , "depositedEnergy" , 200 , 0., 700.);
-
+    
+   // analysisManager->CreateH1("eSec_gamma", "secondaryphotonsEnergy", 200, 0., 700.);
+    
+   // analysisManager->CreateH1("eSec_e-", "secondaryelectronsEnergy", 200, 0., 700.);
 
   // Task 4c.3: Open file task (extension will be added automatically)
-   analysisManager->OpenFile("task4");
+   analysisManager->OpenFile("progetto");
 }
 
 
@@ -72,21 +77,22 @@ void RunAction::EndOfRunAction(const G4Run* run)
 	     << fAverageElectronEnergy.GetValue()/keV/fNElectrons.GetValue() << " keV" << G4endl;
     else
       G4cout << " * No secondary electrons produced" << G4endl;
-     if (fTotalTrackLength.GetValue())
+   /* if (fTotalTrackLength.GetValue())
      {
         G4cout << " * Total track length of electrons in 1st absorber: ";
-        G4cout << fTotalTrackLength.GetValue() / mm << " mm" << G4endl;
+        G4cout << fTotalTrackLength.GetValue()/mm/fNElectrons.GetValue() << " mm" << G4endl;
 
-        G4double fluence = fTotalTrackLength.GetValue() / (.5 * 10 * 10 * cm3);
+        G4double fluence = fTotalTrackLength.GetValue() / (8 * 5 * 5 * cm3);
         G4cout << " * Mean fluence of electrons in 1st absorber: ";
         G4cout << fluence * cm2 << " cm-2" << G4endl;
      }
      else
      {
 
-     }
+     }*/
   }
 }
+
 
 RunAction::~RunAction()
 {
@@ -100,13 +106,17 @@ void RunAction::AddSecondary(const G4ParticleDefinition* particle,
 {
   if (particle == G4Gamma::Definition())
     {
+     // G4AnalysisManager* analysis2 = G4AnalysisManager::Instance();
       fNGammas += 1;
       fAverageGammaEnergy += energy;
+    //  analysis2->FillH1(2,energy/keV); //ISTOGRAMMA FOTONI SECONDARI
     }
   else if (particle == G4Electron::Definition())
     {
+    //  G4AnalysisManager* analysis3 = G4AnalysisManager::Instance();
       fNElectrons += 1;
       fAverageElectronEnergy += energy;
+     // analysis3->FillH1(3,energy/keV); //ISTOGRAMMA ELETTRONI SECONDARI
     }
   return;
 }
@@ -114,5 +124,8 @@ void RunAction::AddSecondary(const G4ParticleDefinition* particle,
 void RunAction::AddTrackLength(G4double trackLength)
 {
     fTotalTrackLength += trackLength;
+    return;
 
 }
+
+

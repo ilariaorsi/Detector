@@ -7,7 +7,7 @@
 
 void calorimeter_histogram()
 {
-    const char* path = "/Users/admin/geant4-v11.0.1/tasks-build/task4-build/progetto.root";
+    const char* path = "/Users/admin/geant4-v11.0.1/Progetto Detector-build/progetto.root";
     const char* histogramName = "eDep";
     TFile* f = TFile::Open(path);
     if (!f)

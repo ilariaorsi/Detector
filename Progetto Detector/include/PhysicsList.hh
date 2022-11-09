@@ -9,14 +9,6 @@ public:
   PhysicsList();
   ~PhysicsList(){;};
 
-  //! Optional virtual methods, to gain direct control on 
-  //! the particle/processes definition. Not used here
-  /*
-  void 	ConstructParticle () override;
-  void 	ConstructProcess () override;
-  */
-
-  //! Mandatory method 
   void 	SetCuts ();
 
 };

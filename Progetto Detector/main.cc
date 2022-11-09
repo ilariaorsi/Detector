@@ -55,7 +55,6 @@ int main(int argc, char** argv)
 
   runManager->SetUserInitialization(new PhysicsList());
 
-  // Task 1: See that we instantiate the detector construction here
   runManager->SetUserInitialization(new DetectorConstruction());
   runManager->SetUserInitialization(new ActionInitialization());
 

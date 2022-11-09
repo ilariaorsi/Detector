@@ -5,12 +5,6 @@
 #include <G4THitsMap.hh>
 #include <G4ThreeVector.hh>
 
-/**
-  * Custom hit class used in task 4d.
-  *
-  * It holds infomation about energy deposits and position/time when
-  * traversing a layer.
-  */
 class EnergyTimeHit : public G4VHit
 {
 public:

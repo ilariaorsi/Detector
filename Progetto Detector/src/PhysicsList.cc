@@ -1,5 +1,4 @@
 #include "PhysicsList.hh"
-
 #include <G4EmStandardPhysics.hh>
 #include <G4DecayPhysics.hh> 
 #include <G4ProductionCutsTable.hh>
@@ -11,7 +10,6 @@
 
 PhysicsList::PhysicsList()
 {
-  // EM physics
   RegisterPhysics(new G4EmStandardPhysics());
     // RegisterPhysics(new G4EmLivermorePhysics());
     // RegisterPhysics(new G4EmPenelopePhysics());

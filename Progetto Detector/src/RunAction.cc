@@ -16,7 +16,6 @@ RunAction::RunAction() :
   fAverageElectronEnergy("AvgElectronEnergy",0.),
   fTotalTrackLength("TotalTrackLength",0.)
 {
-  // Register created accumulables
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->RegisterAccumulable(fNGammas);
   accumulableManager->RegisterAccumulable(fNElectrons);
@@ -29,34 +28,29 @@ RunAction::RunAction() :
   analysisManager->SetFirstNtupleId(1);
   analysisManager->SetFirstHistoId(1);
 
-
+	//CREAZIONE ISTOGRAMMI 
     analysisManager->CreateH1("eDep" , "depositedEnergy" , 200 , 0., 700.);
     
    // analysisManager->CreateH1("eSec_gamma", "secondaryphotonsEnergy", 200, 0., 700.);
     
    // analysisManager->CreateH1("eSec_e-", "secondaryelectronsEnergy", 200, 0., 700.);
 
-  // Task 4c.3: Open file task (extension will be added automatically)
    analysisManager->OpenFile("progetto");
 }
 
 
 void RunAction::BeginOfRunAction(const G4Run*)
 {
-  // Reset all accumulables to their initial values
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->Reset();
 }
 
 void RunAction::EndOfRunAction(const G4Run* run)
 {
-  //retrieve the number of events produced in the run
   G4int nofEvents = run->GetNumberOfEvent();
 
-  //do nothing, if no events were processed
   if (nofEvents == 0) return;
 
-  // Merge accumulables
   G4AccumulableManager* accumulableManager = G4AccumulableManager::Instance();
   accumulableManager->Merge();
 
@@ -77,19 +71,7 @@ void RunAction::EndOfRunAction(const G4Run* run)
 	     << fAverageElectronEnergy.GetValue()/keV/fNElectrons.GetValue() << " keV" << G4endl;
     else
       G4cout << " * No secondary electrons produced" << G4endl;
-   /* if (fTotalTrackLength.GetValue())
-     {
-        G4cout << " * Total track length of electrons in 1st absorber: ";
-        G4cout << fTotalTrackLength.GetValue()/mm/fNElectrons.GetValue() << " mm" << G4endl;
 
-        G4double fluence = fTotalTrackLength.GetValue() / (8 * 5 * 5 * cm3);
-        G4cout << " * Mean fluence of electrons in 1st absorber: ";
-        G4cout << fluence * cm2 << " cm-2" << G4endl;
-     }
-     else
-     {
-
-     }*/
   }
 }
 
@@ -109,14 +91,14 @@ void RunAction::AddSecondary(const G4ParticleDefinition* particle,
      // G4AnalysisManager* analysis2 = G4AnalysisManager::Instance();
       fNGammas += 1;
       fAverageGammaEnergy += energy;
-    //  analysis2->FillH1(2,energy/keV); //ISTOGRAMMA FOTONI SECONDARI
+    //  analysis2->FillH1(2,energy/keV); -> ISTOGRAMMA FOTONI SECONDARI
     }
   else if (particle == G4Electron::Definition())
     {
     //  G4AnalysisManager* analysis3 = G4AnalysisManager::Instance();
       fNElectrons += 1;
       fAverageElectronEnergy += energy;
-     // analysis3->FillH1(3,energy/keV); //ISTOGRAMMA ELETTRONI SECONDARI
+     // analysis3->FillH1(3,energy/keV); -> ISTOGRAMMA ELETTRONI SECONDARI
     }
   return;
 }
@@ -125,7 +107,6 @@ void RunAction::AddTrackLength(G4double trackLength)
 {
     fTotalTrackLength += trackLength;
     return;
-
 }
 
 
